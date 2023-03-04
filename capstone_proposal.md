@@ -1,6 +1,6 @@
 # NAME
 
-Commerce Platform Hand Twist Jewelry Application
+Commerce Platform Application - Hand Twist Jewelry Online Store
 
 # Project Overview
 
