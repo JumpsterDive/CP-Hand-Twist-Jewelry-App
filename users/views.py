@@ -74,6 +74,12 @@ def user_logout(request):
     return HttpResponse('logout - redirect to homepage')
 #end def user_logout
 
+def user_authentication(request):
+    if request.user.is_authenticated:
+        return HttpResponse("User Authenticated")
+    else:
+        return HttpResponse('You must be logged in to see this view')
+
 
 # Authorization
 
