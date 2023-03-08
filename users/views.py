@@ -5,12 +5,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.views import View
+from django import forms
+from django.views.generic import ListView
 
 # Create your views here.
+
+# class userProfile_FormView(View):
+#     model = userProfile_FormView
+
+
 
 def usersIndex(request):
     return HttpResponse('usersIndex OK')
 #end def usersIndex
+
 
 
 # Create and Edit users
