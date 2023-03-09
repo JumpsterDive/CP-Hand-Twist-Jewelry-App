@@ -19,9 +19,10 @@ from users.forms import userRegistrationForm
 #     model = userProfile_FormView
 
 
-
+@login_required
 def usersIndex(request):
-    return HttpResponse('usersIndex OK')
+    # return HttpResponse('usersIndex OK')
+    return render(request,'main_page/main_page.html')
 #end def usersIndex
 
 
@@ -66,8 +67,6 @@ def change_password(request):
     user.save()
     return HttpResponse('User reset password')
 #end def change_password
-
-
 
 # Authentication, Login & Logout
 

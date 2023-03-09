@@ -6,6 +6,5 @@ app_name = 'users'
 
 urlpatterns = [
     path('',views.usersIndex,name='usersIndex'),
-    path('accounts/',include("django.contrib.auth.urls")),
     path('registration/',views.userRegistration, name = 'userRegistration'),
 ]
