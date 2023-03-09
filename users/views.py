@@ -8,6 +8,10 @@ from django.http import HttpResponseRedirect
 from django.views import View
 from django import forms
 from django.views.generic import ListView
+from django.urls import reverse
+
+
+from users.forms import userRegistrationForm
 
 # Create your views here.
 
@@ -24,23 +28,31 @@ def usersIndex(request):
 
 # Create and Edit users
 
-def user_registration(request):
+def userRegistration(request):
+    # If this is a POST request then process the Form data
     if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-        user = User.objects.create_user(username,
-                                        email,
-                                        password,
-                                        first_name=first_name,
-                                        last_name=last_name)
-        user.save()
-        return HttpResponse('user registration saved')
+        # Create a form instance and populate it with data from the request(binding):
+        form = userRegistrationForm(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+
+
+            # redirect to a new URL
+            # return HttpResponseRedirect(reverse('Registration page'))
+            return HttpResponse('user registration saved')        
+        else:
+            return HttpResponse('user registration Not Saved')
+    # If this is a GET (or any other method) create the default form.
     else:
-        return HttpResponse('user registration Not Saved')
-    
+        form = userRegistrationForm()
+
+    context = {
+        'form':form
+    }
+
+    return render(request,'registration/registration_form.html',context)
 
 #end def user_registration
 
