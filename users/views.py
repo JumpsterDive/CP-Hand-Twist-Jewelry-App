@@ -51,7 +51,7 @@ def userRegistration(request):
                                             last_name=last_name)
             user.save()            
             # redirect to a new URL
-            return HttpResponseRedirect(reverse('users:usersIndex'))
+            return HttpResponseRedirect(reverse('main_page:mainPageView'))
             # return HttpResponse('user registration saved')        
         else:
             return HttpResponse('user registration Not Saved')
@@ -110,6 +110,10 @@ def user_authentication(request):
     else:
         return HttpResponse('You must be logged in to see this view')
 
+
+def userProfile(request):
+    return render(request,'users/userProfile.html')
+#end def userProfile
 
 # Authorization
 

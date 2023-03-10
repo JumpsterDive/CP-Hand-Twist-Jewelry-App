@@ -41,25 +41,60 @@
                     </a>
                 </li>
             </ul>
-        </div>
-    </nav>
-
-    {% block content %}
+   
 
 
-    <ul class="sidebar-nav">
+    {% if user.is_authenticated and user.is_superuser %}
 
-        {% if user.is_authenticated %}
+    <ul>
         <li>User : {{user.get_username}}</li>
-        <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
-
-        {% else %}
-        <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-
-        {% endif %}
-
+        <li>
+            <a href="{% url 'admin:index' %}">Admin</a>
+            <div>
+                <a href="#">Action</a>
+                <a href="{% url 'users:userProfile' %}">UserProfile</a>
+                <a href="#">Another Action</a>
+                <div>
+                    <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+                </div>
+            </div>
+        </li>
     </ul>
 
+    {% elif user.is_authenticated %}
+
+    <ul>
+        <li>User : {{user.get_username}}</li>
+        <li>
+            <div>
+                <a href="#">Action</a>
+                <a href="{% url 'users:userProfile' %}">UserProfile</a>
+                <a href="#">Another Action</a>
+                <div>
+                    <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    {% else %}
+
+    <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+
+    <a href="{% url 'users:userRegistration' %}">Register</a>
+
+    {% endif %}
+
+    <form action="#" method='GET'>
+        <input type="search" name="q" placeholder="Search" value="{{request.GET.q}}">
+        <button type="submit">Search</button>
+    </form>
+</div>
+</nav>
+
+<!-- Navbar Ends  -->
+
+    {% block content %}
     {% endblock content %}
 
 </body>
