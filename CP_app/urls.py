@@ -25,7 +25,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
+    path('main_page/',include('main_page.urls')),
     path('accounts/',include("django.contrib.auth.urls")),  # Add Django site authentication urls (for login, logout, password management)
-    path('', RedirectView.as_view(url='users/',permanent=True)),
+    path('', RedirectView.as_view(url='main_page/',permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

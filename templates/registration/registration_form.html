@@ -1,6 +1,6 @@
 {% block content %}
 <h1>Registration Page</h1>
-<form action="" method = "post">
+<form action="{% url 'users:userRegistration' %}" method = "post">
     {% csrf_token %}
     <table>
         {{form.as_table}}   <!-- Each field is rendered as a table row -->

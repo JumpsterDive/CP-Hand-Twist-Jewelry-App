@@ -38,11 +38,21 @@ def userRegistration(request):
         # Check if the form is valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-
-
+            first_name = form.cleaned_data['firstName']
+            last_name = form.cleaned_data['lastName']
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            
+            user = User.objects.create_user(username,
+                                            email,
+                                            password,
+                                            first_name=first_name,
+                                            last_name=last_name)
+            user.save()            
             # redirect to a new URL
-            # return HttpResponseRedirect(reverse('Registration page'))
-            return HttpResponse('user registration saved')        
+            return HttpResponseRedirect(reverse('users:usersIndex'))
+            # return HttpResponse('user registration saved')        
         else:
             return HttpResponse('user registration Not Saved')
     # If this is a GET (or any other method) create the default form.
