@@ -1,3 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+<title>Registration Page</title>
+{% endblock title %}
+
+
 {% block content %}
 <h1>Registration Page</h1>
 <form action="{% url 'users:userRegistration' %}" method = "post">
