@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block title %}
     {% endblock title %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -20,78 +20,93 @@
 
 <body>
     <!-- Navbar starts Here -->
-    <nav>
-        <a href="{% url 'main_page:mainPageView' %}">Hand Twist Jewelry</a>
-        <button type="button">
-            <span></span>
-        </button>
-        <div>
-            <ul>
-                <li>
-                    <a href="{% url 'main_page:mainPageView' %}">Home <span>(current)</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'main_page:aboutPageView' %}">About <span>(current)</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'main_page:contactPageView' %}">Contact <span>(current)</span>
-                    </a>
-                </li>
-            </ul>
-   
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color:#e3f2fd;">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+                    <div>
+                        <li>
+                            <a href="{% url 'main_page:mainPageView' %}">Hand Twist Jewelry</a>
+                        </li>
+                    </div>
+                    <li class="nav-item">
+                        <a class = "nav-link active" href="{% url 'main_page:mainPageView' %}">Home <span>(current)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'main_page:aboutPageView' %}">About <span>(current)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'main_page:contactPageView' %}">Contact <span>(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-tog>Products</a>
+                        <ul class="dropdown-content">
+                            <li><a class="dropdown-item" href="#">Link 1</a></li>
+                            <li><a class="dropdown-item" href="#">Link 2</a></li>
+                            <li><a class="dorpdown-item" href="#">Link 3</a></li>
+                        </ul>
+                    </li>
+
+                    {% if user.is_authenticated and user.is_superuser %}
 
 
-    {% if user.is_authenticated and user.is_superuser %}
+                    <li>User : {{user.get_username}}</li>
+                    <li>
+                        <a href="{% url 'admin:index' %}">Admin</a>
+                        <div>
+                            <a href="#">Action</a>
+                            <a href="{% url 'users:userProfile' %}">UserProfile</a>
+                            <a href="#">Another Action</a>
+                            <div>
+                                <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+                            </div>
+                        </div>
+                    </li>
 
-    <ul>
-        <li>User : {{user.get_username}}</li>
-        <li>
-            <a href="{% url 'admin:index' %}">Admin</a>
-            <div>
-                <a href="#">Action</a>
-                <a href="{% url 'users:userProfile' %}">UserProfile</a>
-                <a href="#">Another Action</a>
-                <div>
-                    <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
-                </div>
+
+                    {% elif user.is_authenticated %}
+
+
+                    <li>User : {{user.get_username}}</li>
+                    <li>
+                        <div>
+                            <a href="#">Action</a>
+                            <a href="{% url 'users:userProfile' %}">UserProfile</a>
+                            <a href="#">Another Action</a>
+                            <div>
+                                <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    {% else %}
+
+                    <li>
+                        <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'users:userRegistration' %}">Register</a>
+                    </li>
+
+                    {% endif %}
+                    <li style="float:right">
+                        <form class="d-flex" action="#" method='GET'>
+                            <input class="form-control me-2" type="search" name="q" placeholder="Search" value="{{request.GET.q}}">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </li>
+                </ul>
             </div>
-        </li>
-    </ul>
+        </div>
 
-    {% elif user.is_authenticated %}
+    </nav>
 
-    <ul>
-        <li>User : {{user.get_username}}</li>
-        <li>
-            <div>
-                <a href="#">Action</a>
-                <a href="{% url 'users:userProfile' %}">UserProfile</a>
-                <a href="#">Another Action</a>
-                <div>
-                    <a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
-                </div>
-            </div>
-        </li>
-    </ul>
-
-    {% else %}
-
-    <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-
-    <a href="{% url 'users:userRegistration' %}">Register</a>
-
-    {% endif %}
-
-    <form action="#" method='GET'>
-        <input type="search" name="q" placeholder="Search" value="{{request.GET.q}}">
-        <button type="submit">Search</button>
-    </form>
-</div>
-</nav>
-
-<!-- Navbar Ends  -->
+    <!-- Navbar Ends  -->
 
     {% block content %}
     {% endblock content %}
