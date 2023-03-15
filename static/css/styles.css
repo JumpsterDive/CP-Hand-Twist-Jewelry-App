@@ -1,7 +1,13 @@
+nav {
+    /* background-color: #D4E2FF; */
+    background-color: red
+}
 
 
+/* 
 
-/* ul {  
+
+ ul {  
     position: fixed;
     top 0;
     width: 100%; 
@@ -10,7 +16,7 @@
     padding: 0;
     overflow: hidden;
     background-color: #D4E2FF;
-} */
+}
 
 li {
     float: left; 
@@ -72,13 +78,7 @@ ul li.right {float:right;}
     ul li {float:none;}
 }
 
-
-
-
-
-
-
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
+ */
