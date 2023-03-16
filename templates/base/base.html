@@ -22,90 +22,7 @@
 </head>
 
 <body>
-  <!-- Navbar starts Here -->
-  <!-- <nav class="navbar  bg-body-tertiary" style="background-color:#e3f2fd;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'main_page:mainPageView' %}">Hand Twist Jewelry</a>
-            <div class="collapse navbar-collapse" >
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item">
-                        <a class="nav-link active"  href="{% url 'main_page:mainPageView' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'main_page:aboutPageView' %}">About <span>(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'main_page:contactPageView' %}">Contact <span>(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown">Products</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Link 1</a></li>
-                            <li><a class="dropdown-item" href="#">Link 2</a></li>
-
-                            <li><a class="dropdown-item" href="#">Link 3</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-
-                    {% if user.is_authenticated and user.is_superuser %}
-
-                    <li class="nav-item">User : {{user.get_username}}</li>
-                    <li class="nav-item">
-                        <a class="nav-link active"  href="{% url 'admin:index' %}">Admin</a>
-                        <div>
-                            <a class="nav-link active"  href="#">Action</a>
-                            <a class="nav-link active"  href="{% url 'users:userProfile' %}">UserProfile</a>
-                            <a class="nav-link active"  href="#">Another Action</a>
-                            <div>
-                                <a class="nav-link active"  href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
-                            </div>
-                        </div>
-                    </li>
-
-                    {% elif user.is_authenticated %}
-
-                    <li class="nav-item">User : {{user.get_username}}</li>
-                    <li class="nav-item">
-                        <div>
-                            <a class="nav-link active"  href="#">Action</a>
-                            <a class="nav-link active" href="{% url 'users:userProfile' %}">UserProfile</a>
-                            <a class="nav-link active"  href="#">Another Action</a>
-                            <div>
-                                <a class="nav-link active"  href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
-                            </div>
-                        </div>
-                    </li>
-
-                    {% else %}
-
-                    <li class="nav-item">
-                        <a class="nav-link active"  href="{% url 'login' %}?next={{ request.path }}">Login</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'users:userRegistration' %}">Register</a>
-                    </li>
-
-                    {% endif %}
-                    <li style="float:right">
-                        <form class="d-flex" action="#" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> -->
-
-  <!-- Navbar Ends  -->
+  <!-- Navbar BEGINS -->
 
   <nav class="navbar navbar-light sticky-top navbar-expand-lg" style="background-color: #AFC5F0">
     <div class="container-fluid">
@@ -192,22 +109,24 @@
       </div>
     </div>
   </nav>
-
+  <!-- Navbar ENDS -->
 
 
   {% block content %}
   {% endblock content %}
 
-  <footer class="footer fixed-bottom pb-6 pt-4 pt-md-12" style="background-color: #677BA3">
+  <!-- Footer BEGINS -->
+
+  <footer class="footer  " style="background-color: #677BA3">
     <div class="container">
       <div class="row-align-items-center">
-        <div class="col-8 col-md-12 col-lg-4">
+        <!-- <div class="col-8 col-md-12 col-lg-4">
           <a href="#">
             <img src="" alt="">
           </a>
-        </div>
+        </div> -->
         <div class="col-4 col-md-12 col-lg-8 text-end">
-          <ul class="list-inline text-md-end mb-0 small">  
+          <ul class="list-inline text-md-end mb-0 small">
             <li class="list-inline-item me-2">
               <a class="social-links" href="#!">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -221,23 +140,23 @@
       </div>
       <div class="row g-4">
         <div class="col-12 col-md-12 col-lg-4">
-          <h6 class="mb-4 text-white">Categories</h6>
+          <h6 class="mb-20 text-white">Categories</h6>
           <div class="row"></div>
           <div class="col-6">
             <!-- list -->
             <ul class="nav flex-colum">
               <li class="nav-item mb-2">
-                  <a class="nav-link" href="#!">Contact</a>
+                <a class="nav-link" href="#!">Contact</a>
               </li>
               <li class="nav-item mb-2">
                 <a class="nav-link" href="#!">About</a>
-            </li>
-            <li class="nav-item mb-2">
-              <a class="nav-link" href="#!">LINK1</a>
-          </li>
-          <li class="nav-item mb-2">
-            <a class="nav-link" href="#!">LINK2</a>
-        </li>
+              </li>
+              <li class="nav-item mb-2">
+                <a class="nav-link" href="#!">LINK1</a>
+              </li>
+              <li class="nav-item mb-2">
+                <a class="nav-link" href="#!">LINK2</a>
+              </li>
             </ul>
           </div>
 
@@ -246,6 +165,8 @@
       </div>
     </div>
   </footer>
+
+  <!-- Footer ENDS -->
 
 </body>
 
