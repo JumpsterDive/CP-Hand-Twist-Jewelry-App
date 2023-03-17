@@ -27,6 +27,13 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('main_page/',include('main_page.urls')),
     path('accounts/',include("django.contrib.auth.urls")),  # Add Django site authentication urls (for login, logout, password management)
+    # path('accounts/', include('allauth.urls')),  # updated to allauth.urls instead of django.contrib.auth.urls
     path('', RedirectView.as_view(url='main_page/',permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+'''
+Note that you do not necessarily need the URLs provided by django.contrib.auth.urls. 
+Instead of the URLs login, logout, and password_change (among others), 
+you can use the URLs provided by allauth: account_login, account_logout, 
+account_set_password…
+'''
