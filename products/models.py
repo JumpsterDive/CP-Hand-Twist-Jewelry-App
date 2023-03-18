@@ -2,7 +2,20 @@ from django.db import models
 
 # Create your models here.
 
-class Product(models.Model):
+# class ImageAlbum(models.Model):
+#     def default(self):
+#             return self.images.filter(default=True).first()
+        
+#     def thumbnails(self):
+#             return self.images.filter(width__lt=100,length_lt=100)
+
+#end class ImageAlbum
+    
+
+
+
+
+class ProductItem(models.Model):
     CATEGORY = [
         ('Earrings','Earrings'),
         ('EarClimbers','EarClimbers')
@@ -28,7 +41,8 @@ class Product(models.Model):
     name = models.CharField(max_length=191)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     description = models.TextField()
-    image = models.ImageField(upload_to='product_images/', blank=True)
+    image = models.FileField(blank=True)
+    # album = models.OneToOneField(ImageAlbum,related_name='model',on_delete=models.CASCADE, default=None)
     category = models.CharField(max_length=191, blank=True, choices=CATEGORY)
     type = models.CharField(max_length=191, blank =True, choices=TYPE)
     style = models.CharField(max_length=191, blank =True, choices=STYLE)
@@ -38,26 +52,17 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name} {self.price} {self.description} {self.image}'
     
-#end class Product
+#end class ProductItem
     
-class ImageAlbum(models.Model):
-    def default(self):
-            return self.images.filter(default=True).first()
-        
-    def thumbnails(self):
-            return self.images.filter(width__lt=100,length_lt=100)
-
-#end class ImageAlbum
-    
-class Image(models.Model):
+class UploadImage(models.Model):
     name = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='product_images/', blank=True)
+    images = models.ImageField(upload_to='product_images/', blank=True)
     default = models.BooleanField(default=False)
     width = models.FloatField(default=100)
     length = models.FloatField(default=100)
-    album = models.ForeignKey(ImageAlbum, related_name='images',on_delete=models.CASCADE)
+    album = models.ForeignKey(ProductItem,default=None, on_delete=models.CASCADE)
 
-#end class Image
+#end class UploadImage
     
 
 
