@@ -26,11 +26,17 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
+    # path('cart/',include('shopcart.urls')),
+    path('products/',include('products.urls')),
     path('main_page/',include('main_page.urls')),
     path('accounts/',include("django.contrib.auth.urls")),  # Add Django site authentication urls (for login, logout, password management)
     # path('accounts/', include('allauth.urls')),  
     path('', RedirectView.as_view(url='main_page/',permanent=True)),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+# static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 '''
 Note that you do not necessarily need the URLs provided by django.contrib.auth.urls. 

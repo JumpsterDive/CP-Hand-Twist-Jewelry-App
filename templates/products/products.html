@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Products Page</title>
+{% endblock title %}
+
+
+{% block content %} 
+
+<h1>Products Page</h1>
+<p>Here is the list of prodcts</p>
+
+{% for product_item in all_products %}
+  {{ product_item.name }}
+  {{ product_item.price }}
+  {{ product_item.description }}
+  <img src="http://127.0.0.1:8000/media/product_images/Test_IMG009.png" alt="">
+  {{product_item.image.url}}
+{% endfor %}
+
+
+{% endblock content %}
+
