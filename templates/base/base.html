@@ -23,6 +23,10 @@
     integrity="sha512-L4lHq2JI/GoKsERT8KYa72iCwfSrKYWEyaBxzJeeITM9Lub5vlTj8tufqYk056exhjo2QDEipJrg6zen/DDtoQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{% static 'js/javascript.js' %}" defer></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
 </head>
 
 <body>
@@ -121,53 +125,80 @@
 
   <!-- Footer BEGINS -->
 
-  <footer class="footer  " style="background-color: #677BA3">
+  <footer class="fixed-bottom text-center text-white mt-1" style="background-color: #AFC5F0">
+  
+    <!--Call to action-->
+      <div class="pt-2 pb-1">
+        <a class="btn btn-outline-white footer-cta mx-2" href="#" target="_blank" role="button">CONTACT
+          <i class="fas fa-phone ms-1"></i>
+        </a>
+        <a class="btn btn-outline-white footer-cta mx-2" href="#" target="_blank" role="button">ABOUT
+          <i class="fas fa-home ms-1"></i>
+        </a>
+      </div>
+      <!--/.Call to action-->
+    
+    <hr class="text-dark">
+    
     <div class="container">
-      <div class="row-align-items-center">
-        <!-- <div class="col-8 col-md-12 col-lg-4">
-          <a href="#">
-            <img src="" alt="">
-          </a>
-        </div> -->
-        <div class="col-4 col-md-12 col-lg-8 text-end">
-          <ul class="list-inline text-md-end mb-0 small">
-            <li class="list-inline-item me-2">
-              <a class="social-links" href="#!">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-instagram" viewBox="0 0 16 16">
-                  <path></path>
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="row g-4">
-        <div class="col-12 col-md-12 col-lg-4">
-          <h6 class="mb-20 text-white">Categories</h6>
-          <div class="row"></div>
-          <div class="col-6">
-            <!-- list -->
-            <ul class="nav flex-colum">
-              <li class="nav-item mb-2">
-                <a class="nav-link" href="#!">Contact</a>
-              </li>
-              <li class="nav-item mb-2">
-                <a class="nav-link" href="#!">About</a>
-              </li>
-              <li class="nav-item mb-2">
-                <a class="nav-link" href="#!">LINK1</a>
-              </li>
-              <li class="nav-item mb-2">
-                <a class="nav-link" href="#!">LINK2</a>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-      </div>
+      <!-- Section: Social media -->
+      <section class="mb-1">
+        
+        <!-- Facebook -->
+        <!-- <a
+          class="btn-link btn-floating btn-lg text-white"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-facebook-f"></i
+        ></a> -->
+  
+        <!-- Twitter -->
+        <!-- <a
+          class="btn-link btn-floating btn-lg text-white"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-twitter"></i
+        ></a> -->
+  
+        <!-- Google -->
+        <!-- <a
+          class="btn-link btn-floating btn-lg text-white"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-google"></i
+        ></a> -->
+  
+        <!-- Instagram -->
+        <a
+          class="btn-link btn-floating btn-lg text-white"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-instagram"></i
+        ></a>
+  
+        <!-- YouTube -->
+        <!-- <a
+          class="btn-link btn-floating btn-lg text-white"
+          href="#!"
+          role="button"
+          data-mdb-ripple-color="dark"
+          ><i class="fab fa-youtube"></i
+        ></a> -->
+  
+      </section>
+      <!-- Section: Social media -->
     </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2); text-color: #E0E0E0">
+      WebSite Under Development 2023
+    </div>
+    <!-- Copyright -->
   </footer>
 
   <!-- Footer ENDS -->
