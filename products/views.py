@@ -23,3 +23,9 @@ def productPage3_index(request):
     return render(request, "products/products.html", {
                                     'all_products':all_products,
                                      })
+
+def productDetails_index(request):
+    all_products = Product.objects.all()
+    return render(request, "products/productDetails.html", {
+                                    'all_products':all_products,
+                                     })
