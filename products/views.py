@@ -24,13 +24,14 @@ def productPage3_index(request):
                                     'all_products':all_products,
                                      })
 
-def productDetailsIndex(request):
-    all_products = ProductItem.objects.all()
+def productDetailsIndex(request,id):
+    # all_products = ProductItem.objects.all()
     # productDetailsObject = ProductItem.objects.filter(id=id)
-    # context = {'productDetail': productDetailsObject}
-    return render(request, "products/productDetails.html", {
-                                    'all_products':all_products,
-                                     })
+    productDetailsObject = ProductItem.objects.get(id=id)
+    context = {'productDetail': productDetailsObject}
+    print(context)
+    
+    return render(request, "products/productDetails.html", context)
  
 
 #end def productDetails_index

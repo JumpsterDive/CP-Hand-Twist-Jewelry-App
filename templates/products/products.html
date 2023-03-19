@@ -21,7 +21,7 @@
             <div class="card" style="width: 100%; height:400px;" >
               <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                 data-mdb-ripple-color="light">
-                <a href="{% url 'products:productDetailsIndex' %}">
+                <a href="{% url 'products:productDetailsIndex' product_item.id %}">
                   <img src="{{product_item.image.url}}" class="w-100" />
                 </a>
                 <a href="#!">
