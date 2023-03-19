@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.instagram',
+    'mptt',   # Modified Preorder Tree Traversal
     # Custom Apps Below
     'main_page',
     'products',

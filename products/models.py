@@ -1,71 +1,145 @@
 from django.db import models
+from django.urls import reverse
+from mptt.models import MPTTModel, TreeForeignKey
 
 # Create your models here.
 
-# class ImageAlbum(models.Model):
-#     def default(self):
-#             return self.images.filter(default=True).first()
-        
-#     def thumbnails(self):
-#             return self.images.filter(width__lt=100,length_lt=100)
-
-#end class ImageAlbum
+class Category(MPTTModel):
+    """
+    Category Table implemented with MPTT
+    """
     
+    name = models.CharField(verbose_name = ("Category Name"), help_text = ("Required and unique"),max_length = 255,unique = True)
+    slug = models.SlugField(verbose_name = ("Category safe URL"),max_length=255,unique=True)
+    parent = TreeForeignKey("self",on_delete=models.CASCADE,null=True,blank=True,related_name="children")
+    is_active = models.BooleanField(default=False)
 
+    class MPTTMeta:
+        order_insertion_by = ["name"]
 
+    class Meta:
+        verbose_name = ("Category")
+        verbose_name_plural = ("Categories")
 
+    # def get_absolute_url(self):
+    #     return reverse("store:category_list", args=[self.slug])
+    
+    def __str__(self):
+        return self.name
+#end class Category
+    
+class ProductType(models.Model):
+    """
+    ProductType table will provide a list of the different types of 
+    products that are for sale
+    """
+    name = models.CharField(verbose_name = ("Product Name"),help_text = ("Required"),max_length = 255,unique = True)
+    is_active = models.BooleanField(default=True)
 
-class ProductItem(models.Model):
-    CATEGORY = [
-        ('Earrings','Earrings'),
-        ('EarClimbers','EarClimbers')
-    ]
-    TYPE = [
-        ('Studs','Studs'),
-        ('Cuffs','Cuffs'),
-        ('Gemstone','Gemstone'),
-    ]
-    STYLE = [
-        ('basic','basic'),
-        ('fancy','fancy'),
-    ]
-    COLOR = [
-        ('silver','silver'),
-        ('gold','gold'),
-    ]
-    SIZE = [
-        ('S','Small'),
-        ('M','Medium'),
-        ('L','Large'),
-    ]
-    name = models.CharField(max_length=191)
-    price = models.DecimalField(max_digits=7, decimal_places=2)
-    description = models.TextField()
-    image = models.FileField(blank=True)
-    # album = models.OneToOneField(ImageAlbum,related_name='model',on_delete=models.CASCADE, default=None)
-    category = models.CharField(max_length=191, blank=True, choices=CATEGORY)
-    type = models.CharField(max_length=191, blank =True, choices=TYPE)
-    style = models.CharField(max_length=191, blank =True, choices=STYLE)
-    color = models.CharField(max_length=191, blank =True, choices=COLOR)
-    size = models.CharField(max_length=191, blank =True, choices=SIZE)
+    class Meta:
+        verbose_name = ("Product Type")
+        verbose_name_plural = ("Product Types")
 
     def __str__(self):
-        return f'{self.name} {self.price} {self.description} {self.image} {self.category} {self.style} {self.color} {self.size}'
+        return self.name
+
+#end class ProductType    
+
+class ProductItem(models.Model):
+    """
+    The Product table containing all product items
+    """
+    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
+    category = models.ForeignKey(Category, on_delete=models.RESTRICT)
+    title = models.CharField(verbose_name=("title"), help_text=("Required"), max_length=255)
+    description = models.TextField(verbose_name=("description"),help_text=("enter description of product"),blank=True)
+    additional_description = models.TextField(verbose_name=("additional description"),help_text=("Not Required"),blank=True)
+    slug = models.SlugField(max_length=255)
+    regular_price= models.DecimalField(
+        verbose_name=("Regular price"), 
+        help_text=("Maximum 999.99"),
+        error_messages={
+            "name": {
+                "max_length": ("The price must be between 0 and 999.99"),
+            },
+        },
+        max_digits=5,
+        decimal_places=2,
+        )
+    discount_price = models.DecimalField(
+        verbose_name=("Discount price"),
+        help_text=("Maximum 999.99"),
+        error_messages={
+            "name": {
+                "max_length": ("The price must be between 0 and 999.99"),
+            },
+        },
+        max_digits=5,
+        decimal_places=2,
+    )
+    is_active = models.BooleanField(verbose_name=("Product visibility"),help_text=("Change product visibility"),default=True)
+    created_at = models.DateTimeField(("Created at"), auto_now_add=True,editable=False)
+    updated_at = models.DateTimeField(("Updated at"), auto_now=True)
+
+    class Meta:
+        ordering = ("created_at",)
+        verbose_name = ("Product")
+        verbose_name_plural = ("Products")
+    
+    image = models.FileField(blank=True)
+    # album = models.OneToOneField(ImageAlbum,related_name='model',on_delete=models.CASCADE, default=None)
+    
+
+    def __str__(self):
+        return self.title
     
 #end class ProductItem
+
+class ProductSpecification(models.Model):
+    """
+    The Product specification table contains product
+    specification or features for the product types
+    """
+    product = models.ForeignKey(ProductItem, on_delete=models.CASCADE)
+    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
+    name = models.CharField( verbose_name=("Name"), help_text=("Required"), max_length=255, blank =True)
     
-class UploadImage(models.Model):
+    class Meta:
+        verbose_name = ("Product specification")
+        verbose_name_plural = ("Product Specifications")
+
+    def __str__(self):
+        return self.name
+    
+#end class ProductSpecification
+    
+class ProductImage(models.Model):
+    """
+    The Product Image Table
+    """
+    product = models.ForeignKey(ProductItem,default=None, on_delete=models.CASCADE, related_name="product_image")
     name = models.CharField(max_length=255)
-    images = models.ImageField(upload_to='product_images/', blank=True)
-    default = models.BooleanField(default=False)
-    width = models.FloatField(default=100)
-    length = models.FloatField(default=100)
-    album = models.ForeignKey(ProductItem,default=None, on_delete=models.CASCADE, related_name="product_image")
+    images = models.ImageField(
+            verbose_name = ("image"),
+            upload_to='product_images/', 
+            help_text=("Upload a product image"),
+            blank=True
+            )
+    alt_text = models.CharField(    
+            help_text=("Please add alternative text"),
+            max_length=255,
+            null = True,
+            blank = True
+            )
     is_feature = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
-#end class UploadImage
+    class Meta:
+        verbose_name = ("Product Image")   # A human readable name for the object, singular
+        verbose_name_plural = ("Product Images")  # a plural name for the object
+
+#end class ProductImage
     
 
 
