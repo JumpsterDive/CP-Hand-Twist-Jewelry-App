@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from .models import ProductItem
+from .models import ProductItem 
+from .models import UploadImage
 
 # Create your views here.
 
