@@ -50,7 +50,7 @@ class ProductItem(models.Model):
     size = models.CharField(max_length=191, blank =True, choices=SIZE)
 
     def __str__(self):
-        return f'{self.name} {self.price} {self.description} {self.image}'
+        return f'{self.name} {self.price} {self.description} {self.image} {self.category} {self.style} {self.color} {self.size}'
     
 #end class ProductItem
     

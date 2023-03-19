@@ -21,8 +21,9 @@
             <div class="card" style="width: 100%; height:400px;" >
               <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                 data-mdb-ripple-color="light">
-                <img src="{{product_item.image.url}}"
-                  class="w-100" />
+                <a href="{% url 'products:productDetailsIndex' %}">
+                  <img src="{{product_item.image.url}}" class="w-100" />
+                </a>
                 <a href="#!">
                   <div class="mask">
                     <div class="d-flex justify-content-start align-items-end h-100">
