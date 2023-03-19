@@ -60,7 +60,10 @@ class UploadImage(models.Model):
     default = models.BooleanField(default=False)
     width = models.FloatField(default=100)
     length = models.FloatField(default=100)
-    album = models.ForeignKey(ProductItem,default=None, on_delete=models.CASCADE)
+    album = models.ForeignKey(ProductItem,default=None, on_delete=models.CASCADE, related_name="product_image")
+    is_feature = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
 
 #end class UploadImage
     
