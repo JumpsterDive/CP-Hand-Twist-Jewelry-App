@@ -8,11 +8,11 @@ from django.http import HttpResponse
 # Create your views here.
 
 
-# def product_index(request):
-#     all_products = Product.objects.all()
-#     return render(request, "products/products.html",{
-#                                     'all_products':all_products,
-#                                      })
+def checkout(request):
+    # all_products = Product.objects.all()
+    return render(request, "shopcart/checkout.html")
+
+
 
 # def show_product(request, product_id):
 #     if request.method == 'POST':

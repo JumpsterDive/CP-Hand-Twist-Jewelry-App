@@ -26,7 +26,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
-    # path('cart/',include('shopcart.urls')),
+    path('shopcart/',include('shopcart.urls',namespace='shopcart')),
     path('products/',include('products.urls')),
     path('main_page/',include('main_page.urls')),
     path('accounts/',include("django.contrib.auth.urls")),  # Add Django site authentication urls (for login, logout, password management)

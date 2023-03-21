@@ -3,6 +3,6 @@ from . import views
 
 app_name = 'shopcart'
 
-# urlpatterns = [
-#     path('shop_products/', views.product_index, name ='product_index'),
-# ]
+urlpatterns = [
+    path('checkout/', views.checkout, name ='checkout'),
+]
