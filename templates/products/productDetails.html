@@ -14,7 +14,16 @@
         <div class="row">
             <!--Grid column-->
             <div class="col-md-6 mb-4">
-                <img src="{{productDetail.image.url}}" class="img-fluid  " style=" width: 300px; height:300px; border-radius:15px;  padding:1px; " alt="...">
+
+                {% for image in productDetail.product_image.all %}
+                {% if image.is_feature %}
+                
+                <img src="{{image.images.url}}" class="w-100" alt="Responsive Image"/>
+                
+                {% endif %}
+                {% endfor %}
+
+               
             </div>
             <!--Grid column-->
 
@@ -35,10 +44,10 @@
                     </div>
 
                     <p class="lead">
-                        <span class="me-1">
-                            <del>$200</del>
+                        <span>
+                            ${{ productDetail.regular_price }}
                         </span>
-                        <span>$100</span>
+                
                     </p>
 
                     <strong><p style="font-size: 20px;">Description</p></strong>
@@ -66,12 +75,15 @@
 
         <!--Grid row-->
         <div class="row">
-            <img src="{% static 'imgs/test_imgs/Test_IMG012.png' %}" class="img-fluid img-thumbnail " style=" width: 100px; height:100px; border-radius:15px;  padding:1px; " alt="...">
-                <img src="{% static 'imgs/test_imgs/Test_IMG012.png' %}" class="img-fluid img-thumbnail " style=" width: 100px; height:100px; border-radius:15px;  padding:1px; " alt="...">
-                <img src="{% static 'imgs/test_imgs/Test_IMG012.png' %}" class="img-fluid img-thumbnail " style=" width: 100px; height:100px; border-radius:15px;  padding:1px; " alt="...">
-                <img src="{% static 'imgs/test_imgs/Test_IMG012.png' %}" class="img-fluid img-thumbnail " style=" width: 100px; height:100px; border-radius:15px;  padding:1px; " alt="...">
-                <img src="{% static 'imgs/test_imgs/Test_IMG012.png' %}" class="img-fluid img-thumbnail " style=" width: 100px; height:100px; border-radius:15px;  padding:1px; " alt="...">
-                <img src="{% static 'imgs/test_imgs/Test_IMG012.png' %}" class="img-fluid img-thumbnail " style=" width: 100px; height:100px; border-radius:15px;  padding:1px; " alt="...">
+
+            {% for image in productDetail.product_image.all %}
+                {% if not image.is_feature %}
+                
+                    <img src="{{image.images.url}}" class="img-fluid img-thumbnail " style=" width: 100px; height:100px; border-radius:15px;  padding:1px; " alt="{{image.alt_text}}" />
+                
+                {% endif %}
+            {% endfor %}
+            
         </div>
         <!--Grid row-->
 

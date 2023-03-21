@@ -21,9 +21,15 @@
             <div class="card" style="width: 100%; height:400px;" >
               <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                 data-mdb-ripple-color="light">
-                <a href="{% url 'products:productDetailsIndex' product_item.id %}">
-                  <img src="{{product_item.image.url}}" class="w-100" />
-                </a>
+                
+                  {% for image in product_item.product_image.all %}
+                    {% if image.is_feature %}
+                    <a href="{% url 'products:productDetailsIndex' product_item.id %}">
+                    <img src="{{image.images.url}}" class="w-100" alt="{{image.alt_text}}"/>
+                    </a>
+                    {% endif %}
+                  {% endfor %}
+
                 <a href="#!">
                   <div class="mask">
                     <div class="d-flex justify-content-start align-items-end h-100">
@@ -42,7 +48,7 @@
                 <a href="" class="text-reset ">
                   <p>{{ product_item.description }}</p>
                 </a>
-                <h6 class="mb-3 price"> ${{ product_item.price }}</h6>
+                <h6 class="mb-3 price"> ${{ product_item.regular_price }}</h6>
               </div>
             </div>
           </div>
