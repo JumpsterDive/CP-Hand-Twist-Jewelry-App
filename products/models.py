@@ -43,14 +43,32 @@ class ProductType(models.Model):
     def __str__(self):
         return self.name
 
-#end class ProductType    
+#end class ProductType 
+
+class ProductSpecification(models.Model):
+    """
+    The Product specification table contains product
+    specification or features for the product types
+    """
+    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
+    name = models.CharField( verbose_name=("Name"), help_text=("Required"), max_length=255, blank =True)
+    
+    class Meta:
+        verbose_name = ("Product specification")
+        verbose_name_plural = ("Product Specifications")
+
+    def __str__(self):
+        return self.name
+    
+#end class ProductSpecification 
+   
 
 class ProductItem(models.Model):
     """
     The Product table containing all product items
     """
-    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
     category = models.ForeignKey(Category, on_delete=models.RESTRICT)
+    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
     title = models.CharField(verbose_name=("title"), help_text=("Required"), max_length=255)
     description = models.TextField(verbose_name=("description"),help_text=("enter description of product"),blank=True)
     additional_description = models.TextField(verbose_name=("additional description"),help_text=("Not Required"),blank=True)
@@ -84,34 +102,31 @@ class ProductItem(models.Model):
     class Meta:
         ordering = ("created_at",)
         verbose_name = ("Product")
-        verbose_name_plural = ("Products")
-    
-    image = models.FileField(blank=True)
-    # album = models.OneToOneField(ImageAlbum,related_name='model',on_delete=models.CASCADE, default=None)
-    
+        verbose_name_plural = ("Products")  
 
     def __str__(self):
         return self.title
     
 #end class ProductItem
 
-class ProductSpecification(models.Model):
+class ProductSpecificationValue(models.Model):
     """
-    The Product specification table contains product
-    specification or features for the product types
+    The Product Specification value table holds each of the 
+    products individual specification or features
     """
     product = models.ForeignKey(ProductItem, on_delete=models.CASCADE)
-    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
-    name = models.CharField( verbose_name=("Name"), help_text=("Required"), max_length=255, blank =True)
-    
+    specification = models.ForeignKey(ProductSpecification,on_delete=models.RESTRICT)
+    value = models.CharField(verbose_name=("value"),help_text=("Product specification value (maximum of 255 words)"),max_length=255)
+
     class Meta:
-        verbose_name = ("Product specification")
-        verbose_name_plural = ("Product Specifications")
+        verbose_name = ("Product Specification Value")
+        verbose_name_plural = ("Product Specification Values")
 
     def __str__(self):
-        return self.name
+        return self.value
     
-#end class ProductSpecification
+#end class ProductSpecificationValue
+
     
 class ProductImage(models.Model):
     """

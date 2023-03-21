@@ -8,6 +8,7 @@ from .models import (
     ProductImage,
     ProductSpecification,
     ProductType,
+    ProductSpecificationValue
 )
 
 admin.site.register(Category,MPTTModelAdmin)
@@ -24,11 +25,14 @@ class ProductTypeAdmin(admin.ModelAdmin):
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
 
+class ProductSpeficationValueInline(admin.TabularInline):
+    model = ProductSpecificationValue
+
 @admin.register(ProductItem)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [
         ProductImageInline,
-       
+        ProductSpeficationValueInline,
     ]
 
 
