@@ -13,8 +13,16 @@ class Shopcart():
             shoppingcart = self.session['skey'] = {}
         self.shoppingcart = shoppingcart
 
+    def add(self,product):
+        """
+        Adding and updating the users basket session data
+        """
+        product_id = product.id
 
+        if product_id not in self.shoppingcart:
+            self.shoppingcart[product_id] = {'price':product.regular_price}
 
+        self.session.modified = True
 
 # def cart_id(request):
 #     if 'cart_id' not in request.session:

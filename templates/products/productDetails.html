@@ -59,7 +59,7 @@
                         <div class="form-outline me-1" style="width: 100px;">
                             <input type="number" value="1" class="form-control" />
                         </div>
-                        <button class="btn btn-primary ms-1" type="submit">
+                        <button class="btn btn-primary ms-1" id="add-button" value="{{productDetail.id}}" type="submit">
                             Add to cart
                             <i class="fas fa-shopping-cart ms-1"></i>
                         </button>
@@ -101,6 +101,25 @@
     </div>
 </main>
 <!--Main layout-->
+
+<script>
+    $(document).on('click','#add-button',function(e){
+        e.preventDefault;
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'shopcart:shopcart_summary' %}",
+            data: {
+                productid: $('#add-button').val()
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+
+            },
+            error: function (xhr, errmsg, err) {}
+        });
+    })
+</script>
 
 
 {% endblock content %}
