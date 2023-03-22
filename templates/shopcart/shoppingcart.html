@@ -1,12 +1,60 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block title %}
-<title>Shopping Cart</title>
+<title>Shopping Cart Summary</title>
 {% endblock title %}
 
 
 {% block content %} 
 
-<h1>Shopping Cart Page</h1>
+<h1>Shopping Cart Summary Page</h1>
+
+    {% if cart_item_count %
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+                <th></th>
+                <th>Total</th>
+            
+            </tr>
+        </thead>
+        <thead>
+            <tbody>
+                {% for item in car_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input type="text" name="quantity" value="{{ item.quantity }}">
+                            <input type="hidden" name="item_id" value="{{ item.id }}">
+                    </td>
+                    <td>
+                            <input type="submit" name="submit" value="Update">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="item_id" value="{{ item.id }}">
+                            <input type="submit" name="submit" value="Remove">
+                        </form>
+                    </td>
+                    <td>${{ item.total_cost }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+            
+        </thead>
+
+
+    </table>
 
 {% endblock content %}

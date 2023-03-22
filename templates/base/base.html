@@ -110,6 +110,15 @@
             <a class="nav-link active" href="{% url 'main_page:contactPageView' %}">Contact</a>
           </li>
         </ul>
+        <a type="button" role="button" href="{% url 'shopcart:shopcart_summary' %}" class="btn btn-outline-secondary">
+          <div class="d-inline-flex">1</div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart"
+            viewBox="0 0 16 16">
+            <path
+              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+          </svg>
+          Shop Cart
+        </a>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
@@ -126,24 +135,24 @@
   <!-- Footer BEGINS -->
 
   <footer class="text-center text-white mt-1" style="background-color: #AFC5F0">
-  
+
     <!--Call to action-->
-      <div class="pt-2 pb-1">
-        <a class="btn btn-outline-white footer-cta mx-2" href="#" target="_blank" role="button">CONTACT
-          <i class="fas fa-phone ms-1"></i>
-        </a>
-        <a class="btn btn-outline-white footer-cta mx-2" href="#" target="_blank" role="button">ABOUT
-          <i class="fas fa-home ms-1"></i>
-        </a>
-      </div>
-      <!--/.Call to action-->
-    
+    <div class="pt-2 pb-1">
+      <a class="btn btn-outline-white footer-cta mx-2" href="#" target="_blank" role="button">CONTACT
+        <i class="fas fa-phone ms-1"></i>
+      </a>
+      <a class="btn btn-outline-white footer-cta mx-2" href="#" target="_blank" role="button">ABOUT
+        <i class="fas fa-home ms-1"></i>
+      </a>
+    </div>
+    <!--/.Call to action-->
+
     <hr class="text-dark">
-    
+
     <div class="container">
       <!-- Section: Social media -->
       <section class="mb-1">
-        
+
         <!-- Facebook -->
         <!-- <a
           class="btn-link btn-floating btn-lg text-white"
@@ -152,7 +161,7 @@
           data-mdb-ripple-color="dark"
           ><i class="fab fa-facebook-f"></i
         ></a> -->
-  
+
         <!-- Twitter -->
         <!-- <a
           class="btn-link btn-floating btn-lg text-white"
@@ -161,7 +170,7 @@
           data-mdb-ripple-color="dark"
           ><i class="fab fa-twitter"></i
         ></a> -->
-  
+
         <!-- Google -->
         <!-- <a
           class="btn-link btn-floating btn-lg text-white"
@@ -170,16 +179,11 @@
           data-mdb-ripple-color="dark"
           ><i class="fab fa-google"></i
         ></a> -->
-  
+
         <!-- Instagram -->
-        <a
-          class="btn-link btn-floating btn-lg text-white"
-          href="#!"
-          role="button"
-          data-mdb-ripple-color="dark"
-          ><i class="fab fa-instagram"></i
-        ></a>
-  
+        <a class="btn-link btn-floating btn-lg text-white" href="#!" role="button" data-mdb-ripple-color="dark"><i
+            class="fab fa-instagram"></i></a>
+
         <!-- YouTube -->
         <!-- <a
           class="btn-link btn-floating btn-lg text-white"
@@ -188,12 +192,12 @@
           data-mdb-ripple-color="dark"
           ><i class="fab fa-youtube"></i
         ></a> -->
-  
+
       </section>
       <!-- Section: Social media -->
     </div>
     <!-- Grid container -->
-  
+
     <!-- Copyright -->
     <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2); text-color: #E0E0E0">
       WebSite Under Development 2023

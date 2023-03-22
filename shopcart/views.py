@@ -7,6 +7,9 @@ from django.http import HttpResponse
 
 # Create your views here.
 
+def shopcart_summary(request):
+    return render(request, 'shopcart/shoppingcart.html')
+
 
 def checkout(request):
     # all_products = Product.objects.all()
