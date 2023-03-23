@@ -13,17 +13,27 @@ class Shopcart():
             shoppingcart = self.session['skey'] = {}
         self.shoppingcart = shoppingcart
 
-    def add(self,product):
+    def add(self,product,product_qty):
         """
         Adding and updating the users basket session data
         """
         product_id = product.id   # Save the product ID
-        print(f'product_id: {product.regular_price}')
+
+        # if product_id in self.shoppingcart:
+        #     self.shoppingcart[product_id]['qty'] = product_qty
+        # else: 
+        #     self.shoppingcart[product_id]={'price':str(product.regular_price),'qty':int(product_qty)}
 
         if product_id not in self.shoppingcart:    # If the product Id is not in the basket the create an item in the basket
-            self.shoppingcart[product_id] = {'price':str(product.regular_price)}
+            self.shoppingcart[product_id] = {'price':str(product.regular_price),'qty':int(product_qty)}
 
         self.session.modified = True   # Tell Django to save the sessions
+
+    def __len__(self):
+        '''
+        Get the basket data and count the qty of items
+        '''
+        return sum(item['qty'] for item in self.shoppingcart.values())  # for each value in the product sum of all the values calculated 
 
 # def cart_id(request):
 #     if 'cart_id' not in request.session:

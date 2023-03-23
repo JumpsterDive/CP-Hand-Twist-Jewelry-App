@@ -57,7 +57,8 @@
                     <form class="d-flex justify-content-left">
                         <!-- Default input -->
                         <div class="form-outline me-1" style="width: 100px;">
-                            <input type="number" value="1" class="form-control"  />
+                            <label for="quantitySelect">Qty</label>
+                                <input type="number" class="form-control" id="quantitySelect" />
                         </div>
                         <button type="button" value="{{productDetail.id}}" class="btn btn-secondary btn-sm ms-1" id="add-button"  >
                             Add to cart
@@ -109,12 +110,14 @@
             type: 'POST',
             url: "{% url 'shopcart:shopcart_add' %}",
             data: {
-                productid: $('#add-button').val(),     
+                productid: $('#add-button').val(),
+                productqty: $('#quantitySelect').val(),     
                 csrfmiddlewaretoken: "{{csrf_token}}",
                 action: 'post'
             },
             success: function (json) {
-                
+                // console.log(json)  //DEBUG
+                document.getElementById("shopping-cart-qty").innerHTML = json.qty
             },
             error: function (xhr, errmsg, err) {}
         });

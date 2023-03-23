@@ -15,12 +15,11 @@ def shopcart_summary(request):
 def shopcart_add(request):
     shopcart = Shopcart(request)    # save the session data
     if request.POST.get('action') == "post":
-        product_id = int(request.POST.get('productid'))    # collect the productid from the data
-        print(f'HERE {product_id}')
+        product_id = int(request.POST.get('productid'))    # collect the productid from the java query
+        product_qty = int(request.POST.get('productqty'))    # collect the product qty from the java query
         product = get_object_or_404(ProductItem,id=product_id)   # find the object in the database 
-        shopcart.add(product = product)   # Save the information to the session in the object class
-        response = JsonResponse({'test':'data'})   # Send some Json data
-        print(f'JSONPRINT {response}')
+        shopcart.add(product = product, product_qty=product_qty)   # Save the information to the session in the object class
+        response = JsonResponse({'qty':product_qty})   # Send some Json data  (This is placeholder for the updated quantity and price)
         return response
 
 
