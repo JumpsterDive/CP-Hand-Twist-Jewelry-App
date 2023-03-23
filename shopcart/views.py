@@ -19,7 +19,9 @@ def shopcart_add(request):
         product_qty = int(request.POST.get('productqty'))    # collect the product qty from the java query
         product = get_object_or_404(ProductItem,id=product_id)   # find the object in the database 
         shopcart.add(product = product, product_qty=product_qty)   # Save the information to the session in the object class
-        response = JsonResponse({'qty':product_qty})   # Send some Json data  (This is placeholder for the updated quantity and price)
+
+        shopcartqty = shopcart.__len__()
+        response = JsonResponse({'qty':shopcartqty})   # Send some Json data this will show all the updated items based upon what is in the basket
         return response
 
 
