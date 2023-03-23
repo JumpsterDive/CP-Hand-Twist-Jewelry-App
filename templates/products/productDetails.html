@@ -57,9 +57,9 @@
                     <form class="d-flex justify-content-left">
                         <!-- Default input -->
                         <div class="form-outline me-1" style="width: 100px;">
-                            <input type="number" value="1" class="form-control" />
+                            <input type="number" value="1" class="form-control"  />
                         </div>
-                        <button class="btn btn-primary ms-1" id="add-button" value="{{productDetail.id}}" type="submit">
+                        <button type="button" value="{{productDetail.id}}" class="btn btn-secondary btn-sm ms-1" id="add-button"  >
                             Add to cart
                             <i class="fas fa-shopping-cart ms-1"></i>
                         </button>
@@ -104,17 +104,17 @@
 
 <script>
     $(document).on('click','#add-button',function(e){
-        e.preventDefault;
+        e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: "{% url 'shopcart:shopcart_summary' %}",
+            url: "{% url 'shopcart:shopcart_add' %}",
             data: {
-                productid: $('#add-button').val()
+                productid: $('#add-button').val(),     
                 csrfmiddlewaretoken: "{{csrf_token}}",
                 action: 'post'
             },
             success: function (json) {
-
+                
             },
             error: function (xhr, errmsg, err) {}
         });

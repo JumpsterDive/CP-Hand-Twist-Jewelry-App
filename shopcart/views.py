@@ -13,12 +13,14 @@ def shopcart_summary(request):
     return render(request, 'shopcart/shoppingcart.html')
 
 def shopcart_add(request):
-    shopcart = Shopcart(request)
-    if request.POST.get('action') == "POST":
-        product_id = int(request.POST.get('productid'))
-        product = get_object_or_404(ProductItem,id=product_id)
-        shopcart.add(product = product)
-        response = JsonResponse({'test':'data'})
+    shopcart = Shopcart(request)    # save the session data
+    if request.POST.get('action') == "post":
+        product_id = int(request.POST.get('productid'))    # collect the productid from the data
+        print(f'HERE {product_id}')
+        product = get_object_or_404(ProductItem,id=product_id)   # find the object in the database 
+        shopcart.add(product = product)   # Save the information to the session in the object class
+        response = JsonResponse({'test':'data'})   # Send some Json data
+        print(f'JSONPRINT {response}')
         return response
 
 

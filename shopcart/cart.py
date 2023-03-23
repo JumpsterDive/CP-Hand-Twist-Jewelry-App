@@ -17,12 +17,13 @@ class Shopcart():
         """
         Adding and updating the users basket session data
         """
-        product_id = product.id
+        product_id = product.id   # Save the product ID
+        print(f'product_id: {product.regular_price}')
 
-        if product_id not in self.shoppingcart:
-            self.shoppingcart[product_id] = {'price':product.regular_price}
+        if product_id not in self.shoppingcart:    # If the product Id is not in the basket the create an item in the basket
+            self.shoppingcart[product_id] = {'price':str(product.regular_price)}
 
-        self.session.modified = True
+        self.session.modified = True   # Tell Django to save the sessions
 
 # def cart_id(request):
 #     if 'cart_id' not in request.session:
