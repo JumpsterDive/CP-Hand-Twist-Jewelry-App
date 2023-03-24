@@ -22,7 +22,10 @@ def shopcart_add(request):
         shopcart.add(product = product, product_qty=product_qty)   # Save the information to the session in the object class
 
         shopcartqty = shopcart.__len__()
-        response = JsonResponse({'qty':shopcartqty})   # Send some Json data this will show all the updated items based upon what is in the basket
+        shopcart_item_total = shopcart.__iter__()
+        
+        print(f'Itemtotal {shopcart_item_total}')
+        response = JsonResponse({'qty':shopcartqty,'item_total':shopcart_item_total})   # Send some Json data this will show all the updated items based upon what is in the basket
         return response
 
 def shopcart_delete(request):
@@ -30,7 +33,9 @@ def shopcart_delete(request):
     if request.POST.get('action') == "post":        
         product_id = int(request.POST.get('productid'))    # collect the productid from the java quer
         shopcart.delete(product = product_id)   # Send the information to the session in the object class for deletion
-        response = JsonResponse({'Success': True})
+        shopcart_qty = shopcart.__len__()
+        shopcart_total = shopcart.get_total_price()
+        response = JsonResponse({'qty': shopcart_qty, 'subtotal': shopcart_total})
         return response
     
 def shopcart_update(request):
@@ -39,8 +44,11 @@ def shopcart_update(request):
         product_id = int(request.POST.get('productid'))    # collect the productid from the java quer
         product_qty = int(request.POST.get('productqty'))
         shopcart.update(product=product_id, qty=product_qty)
+
+        shopcart_qty = shopcart.__len__()
+        shopcart_total = shopcart.get_total_price()
         
-        response = JsonResponse({'Success': True})
+        response = JsonResponse({'qty': shopcart_qty, 'subtotal': shopcart_total})
         return response
 
 
