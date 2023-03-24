@@ -38,15 +38,7 @@
               <div class="row p-3">
                 <div class="col-12">
                     <label for="select">Qty</label>
-                    <select id="select{{product.id}}">
-                      <option selected>
-                        {{item.qty}}
-                      </option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4</option>
-                    </select>
+                    <input type="number" value="{{item.qty}}" class="form-control " id="select{{product.id}}" />
                   <button type="button" id="update-button" data-index="{{product.id}}"
                     class="btn btn-outline-secondary btn-sm update-button">
                     Update
@@ -82,9 +74,27 @@
                 action: 'post'
             },
             success: function (json) {
-                console.log(prodid)
                 $('.product-item[data-index="'+ prodid + '"]').remove();
-        
+            },
+            error: function (xhr, errmsg, err) {}
+        });
+    })
+
+    //update item
+    $(document).on('click','.update-button',function(e){   // utilize the delete button class .delete-button
+        e.preventDefault();
+        var prodid = $(this).data('index');   //Collect the product id when the button is pressed
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'shopcart:shopcart_update' %}",
+            data: {
+                productid: $(this).data('index'),       //Detects which delete button is selected on the summary page for that particular element    
+                productqty: $('#select'+ prodid).val(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+ 
             },
             error: function (xhr, errmsg, err) {}
         });

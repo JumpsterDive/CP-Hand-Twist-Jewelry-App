@@ -32,6 +32,16 @@ def shopcart_delete(request):
         shopcart.delete(product = product_id)   # Send the information to the session in the object class for deletion
         response = JsonResponse({'Success': True})
         return response
+    
+def shopcart_update(request):
+    shopcart = Shopcart(request)    # save the session data
+    if request.POST.get('action') == "post":        
+        product_id = int(request.POST.get('productid'))    # collect the productid from the java quer
+        product_qty = int(request.POST.get('productqty'))
+        shopcart.update(product=product_id, qty=product_qty)
+        
+        response = JsonResponse({'Success': True})
+        return response
 
 
 def checkout(request):

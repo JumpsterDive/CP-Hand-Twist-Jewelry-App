@@ -69,7 +69,25 @@ class Shopcart():
     
     #end def delete
 
+    def update(self, product, qty):
+        '''
+        Update values in session data from the shopping cart
+        '''
+        product_id = str(product)
+        product_qty = qty
+
+        if product_id in self.shoppingcart:
+            self.shoppingcart[product_id]['qty'] = product_qty
+        self.save()
+
+
+
+
     def save(self):
         self.session.modified=True
+
+
+    
+
 
 #end class Shopcart
