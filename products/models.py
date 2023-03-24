@@ -1,8 +1,14 @@
+
 from django.db import models
 from django.urls import reverse
 from mptt.models import MPTTModel, TreeForeignKey
 
 # Create your models here.
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager,self).get_queryset().filter(is_active=True)
+
 
 class Category(MPTTModel):
     """
@@ -98,11 +104,13 @@ class ProductItem(models.Model):
     is_active = models.BooleanField(verbose_name=("Product visibility"),help_text=("Change product visibility"),default=True)
     created_at = models.DateTimeField(("Created at"), auto_now_add=True,editable=False)
     updated_at = models.DateTimeField(("Updated at"), auto_now=True)
+    objects = models.Manager()
+    products = ProductManager()
 
     class Meta:
         ordering = ("created_at",)
         verbose_name = ("Product")
-        verbose_name_plural = ("Products")  
+        verbose_name_plural = ("Products") 
 
     def __str__(self):
         return self.title

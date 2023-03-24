@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-# from django.contrib import messages
 from products.models import ProductItem
-# from .forms import CartForm, CheckoutForm
 from .cart import Shopcart
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
@@ -10,7 +8,10 @@ from django.http import JsonResponse
 # Create your views here.
 
 def shopcart_summary(request):
-    return render(request, 'shopcart/shoppingcart.html')
+    shopcart = Shopcart(request)  # intiatiate an object class
+    context = {'shopcart':shopcart}
+    print(f'ShoppingCart_summary: {shopcart}')
+    return render(request, 'shopcart/shoppingCartSummary.html',context)
 
 def shopcart_add(request):
     shopcart = Shopcart(request)    # save the session data
@@ -24,12 +25,20 @@ def shopcart_add(request):
         response = JsonResponse({'qty':shopcartqty})   # Send some Json data this will show all the updated items based upon what is in the basket
         return response
 
-
+def shopcart_delete(request):
+    shopcart = Shopcart(request)    # save the session data
+    if request.POST.get('action') == "post":        
+        product_id = int(request.POST.get('productid'))    # collect the productid from the java quer
+        shopcart.delete(product = product_id)   # Send the information to the session in the object class for deletion
+        response = JsonResponse({'Success': True})
+        return response
 
 
 def checkout(request):
+    shopcart = Shopcart(request)  # intiatiate an object class
+    context = {'shopcart':shopcart}
     # all_products = Product.objects.all()
-    return render(request, "shopcart/checkout.html")
+    return render(request, "shopcart/checkout.html",context)
 
 
 

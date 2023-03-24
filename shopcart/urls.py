@@ -5,6 +5,7 @@ app_name = 'shopcart'
 
 urlpatterns = [
     path('checkout/', views.checkout, name ='checkout'),
-    path('shoppingcart/', views.shopcart_summary, name='shopcart_summary'),
-    path('add/', views.shopcart_add, name='shopcart_add') 
+    path('cart-summary/', views.shopcart_summary, name='shopcart_summary'),
+    path('add/', views.shopcart_add, name='shopcart_add'), 
+    path('delete/', views.shopcart_delete, name='shopcart_delete') 
 ]
