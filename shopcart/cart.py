@@ -65,7 +65,7 @@ class Shopcart():
         product_id = str(product)   # assign the product id
         if product_id in self.shoppingcart:     # find in the product id in the basket
             del self.shoppingcart[product_id]
-            self.save()
+        self.save()   
     
     #end def delete
 
