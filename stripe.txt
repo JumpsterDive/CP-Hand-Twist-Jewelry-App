@@ -3,3 +3,9 @@ No auth: 4242424242424242
 Auth: 4000002500003155
 
 Error: 4000000000009995
+
+
+Payment method	Scenario	                                                        How to test
+Credit card:	The card payment succeeds and doesn’t require authentication.       //	Fill out the credit card form using the credit card number 4242 4242 4242 4242 with any expiration, CVC, and postal code.
+Credit card:	The card payment requires authentication.                           //	Fill out the credit card form using the credit card number 4000 0025 0000 3155 with any expiration, CVC, and postal code.
+Credit card:	The card is declined with a decline code like insufficient_funds.   //	Fill out the credit card form using the credit card number 4000 0000 0000 9995 with any expiration, CVC, and postal code.

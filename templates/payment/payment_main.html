@@ -35,7 +35,7 @@
                 <h3 class="mb-3">Billing address</h3>
                 <!-- Error messages in this element -->
                 <div id="card-errors" class="a" role="alert"></div>
-                <form>
+                <form >
                   <div class="row g-3">
                     <div class="col-sm-7">
                       <label for="firstName" class="form-label">Customer Name</label>
@@ -99,6 +99,9 @@
                   </div>
                   <hr class="my-4">
                   <button id="submit" class="btn btn-primary w-100 fw-bold" data-secret="{{ client_secret }}">Pay</button>
+                  <div id="error-message">
+                    <!-- Display error message to your customers here -->
+                  </div> 
                 </form>
               </div>
             </div>
@@ -113,10 +116,14 @@
     var CSRF_TOKEN = '{{ csrf_token }}';
   </script>
  
-    <!-- Add the Stripe.js ES Module as a script element in the HTML allowing any newly created Stripe objects to be globally accesible in the code -->
-    <script src='https://js.stripe.com/v3/'></script>
+    <!-- Include the Stripe.js script on your checkout page by adding it to the head of 
+      your HTML file. Always load Stripe.js directly from js.stripe.com to remain PCI compliant. 
+      Don’t include the script in a bundle or host a copy of it yourself. -->
+    <script src="https://js.stripe.com/v3/"></script>
     <!-- Set stripe.js constructor which will set the API publishable key to allow Stripe to tokenize customer information and collect sensitive payment details -->
-    <script src="{% static 'js/payment_index.js' %}" data-rel-js></script>
+    <script src="{% static 'js/checkout.js' %}" data-rel-js></script>
+
+    
 
 
 
