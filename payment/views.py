@@ -18,12 +18,16 @@ def shoppingCartView(request):
     total = total.replace('.','')
     total = int(total)
 
-    stripe.api_key  = 'pk_test_51MpL6FG4DY3biWn4lJxPf1gsnBTTaJVU0f6FOuLHP3F0jPR33WIOx6twS5VKy9W3J0vBOr4y2GhnpAo6neaKGzFy000oIcOu1d'
+    print(total),
+
+    # setup the intent which will then trigger respond a secret key
+    stripe.api_key  = 'sk_test_51MpL6FG4DY3biWn460Tdt3qUUVqUorCebaQSFpfSyRZyRzQ5Dul0Zhz84vAo2RbeW9lr1ZUpdh0MJtU5wqAhHgzu00O1jKpM7L'
     intent = stripe.PaymentIntent.create(
         amount = total,
-        currency='usa',
+        currency='usd',
         metadata={'userid':request.user.id}
     )
     
+    context = {'client_secret': intent.client_secret}
 
-    return render(request, 'payment/payment_main.html') 
+    return render(request, 'payment/payment_main.html',context) 

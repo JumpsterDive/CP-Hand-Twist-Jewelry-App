@@ -109,11 +109,14 @@
   </div>
 
   <script>
+    
     var CSRF_TOKEN = '{{ csrf_token }}';
   </script>
  
+    <!-- Add the Stripe.js ES Module as a script element in the HTML allowing any newly created Stripe objects to be globally accesible in the code -->
     <script src='https://js.stripe.com/v3/'></script>
-    <script src="{static 'js/payment_index.js' %}" data-rel-js></script>
+    <!-- Set stripe.js constructor which will set the API publishable key to allow Stripe to tokenize customer information and collect sensitive payment details -->
+    <script src="{% static 'js/payment_index.js' %}" data-rel-js></script>
 
 
 
