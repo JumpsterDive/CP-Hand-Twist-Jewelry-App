@@ -63,6 +63,14 @@
         </div>
         {% endwith %}
         {% endfor %}
+
+        <div class="col-md-5 col-lg-4 order-md-last p-0 order-3">
+            <div class="d-grid gap-2 ">
+              <a role="button" href="{% url 'payment:shoppingCartView' %}" class="btn btn-success fw-bold" type="button">Checkout</a>
+              <button class="btn btn-light" type="button">Save for later</button>
+            </div>
+          </div>
+
         <div class="col-12 text-end">
             <div class="h6 fw-bold">Sub Total: $<div id="subtotal" class="d-inline-flex">{{shopcart.get_total_price}}</div>
             </div>
@@ -109,8 +117,8 @@
             success: function (json) {   // This updates the basket button to update the value
                 document.getElementById("shopping-cart-qty").innerHTML = json.qty
                 document.getElementById("subtotal").innerHTML = json.subtotal
-                document.getElementById('line-quantity-total'+'prodid').innerHTML = json.qty 
-                document.getElementById('line-item-total'+'prodid').innerHTML = json.item_total 
+                document.getElementById(`line-quantity-total${prodid}`).innerHTML = json.item_qty 
+                // document.getElementById(`line-item-total${prodid}`).innerHTML = json.item_total 
                 console.log(json.item_total)
             },
             error: function (xhr, errmsg, err) { }

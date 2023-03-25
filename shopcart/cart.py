@@ -52,10 +52,12 @@ class Shopcart():
 
         for item in shoppingcart.values():   # select individual values
             item['price'] = Decimal(item['price'])
-            item['total_price'] = item['price'] * item['qty']  
+            item['total_price'] = item['price'] * item['qty']
+            print(item['total_price'])  
             yield item
+            
 
-    
+ 
     def get_total_price(self):
         return sum(Decimal(item['price'])*item['qty'] for item in self.shoppingcart.values())
     

@@ -29,6 +29,7 @@ urlpatterns = [
     path('shopcart/',include('shopcart.urls',namespace='shopcart')),
     path('products/',include('products.urls')),
     path('main_page/',include('main_page.urls')),
+    path('payment/',include('payment.urls')),
     path('accounts/',include("django.contrib.auth.urls")),  # Add Django site authentication urls (for login, logout, password management)
     # path('accounts/', include('allauth.urls')),  
     path('', RedirectView.as_view(url='main_page/',permanent=True)),
