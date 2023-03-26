@@ -88,7 +88,7 @@ form.addEventListener('submit', function (ev) {
         // Your customer will be redirected to your `return_url`. For some payment
         // methods like iDEAL, your customer will be redirected to an intermediate
         // site first to authorize the payment, then redirected to the `return_url`.
-            if (result.paymentIntent.status == 'succeeded') {
+            if (result.paymentIntent.status === 'succeeded') {
                 console.log('payment processed')
                 // There's a risk of the customer closing the window before callback
                 // execution. Set up a webhook or plugin to listen for the
@@ -102,9 +102,8 @@ form.addEventListener('submit', function (ev) {
                 // provides the following URL query parameters
                 // payment_intent: The unique identifier for the PaymentIntent
                 // payment_intent_client_secret: The client secret of the paymentIntent Object
-                window.location.replace("https://example.com/order/123/complete");
-                // window.location.replace("http://127.0.0.1:8000/payment/orderplaced/");
-
+                //window.location.replace("https://example.com/order/123/complete");
+                window.location.replace("http://127.0.0.1:8000/payment/orderplaced/");
 
                 /*
                 NOTE: If you have tooling that tracks the customer’s browser session, 
