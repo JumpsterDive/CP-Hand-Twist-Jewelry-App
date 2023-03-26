@@ -7,7 +7,7 @@
 
 {% block content %} 
 
-<h1>Products Page</h1>
+<h1>{{category.name }} Products Page</h1>
 
  <!--Main layout-->
  <main>
@@ -24,7 +24,7 @@
                 
                   {% for image in product_item.product_image.all %}
                     {% if image.is_feature %}
-                    <a href="{% url 'products:productDetailsIndex' product_item.id %}">
+                    <a href="{{ product_item.get_absolute_url }}">
                     <img src="{{image.images.url}}" class="w-100" alt="{{image.alt_text}}"/>
                     </a>
                     {% endif %}

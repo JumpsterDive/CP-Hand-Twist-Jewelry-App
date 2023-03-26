@@ -32,8 +32,7 @@ def productDetail(request,slug):
     # productDetailsObject = ProductItem.objects.get(id=id)
     # context = {'productDetail': productDetailsObject}
     context = {'productDetail': product}
-    print(context)
-    print("HERE")
+    
     return render(request,'products/productDetails.html',context)
     # all_products = ProductItem.objects.all()
     # productDetailsObject = ProductItem.objects.filter(id=id)
